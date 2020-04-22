@@ -4,12 +4,14 @@ const multerConfig = require('./Config/multer');
 const auth = require('./App/Middleware/auth');
 const UserController = require('./App/Controllers/userController');
 const FileController = require('./App/Controllers/fileController');
+const KeywordsController = require('./App/Controllers/keywordsController');
 const SessionController = require('./App/Controllers/sessionControllers');
 const Validate = require('./App/Middleware/validate');
 
 // routes.get('/', (req, res) => res.status(200).send({ message: 'ok' }));
 routes.post('/signup', Validate.signUp, UserController.store);
 routes.post('/signin', Validate.signIn, SessionController.auth);
+routes.get('/keywords', KeywordsController.show);
 
 routes.use(auth);
 
