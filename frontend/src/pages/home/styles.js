@@ -27,15 +27,16 @@ export const Main = styled.div`
     display: flex;
     flex-direction: column;
     flex: 1;
-    margin: 200px;
+    margin: 20em;
 @media only screen and (min-width: 700px) {
     justify-content: flex-start;
 }
 @media only screen and (max-width: 700px) {
     justify-content: center;
     background-position-x: center;
-    background-position-y: top;
+    background-position-y: 30%;
     background-size: 50%;
+    margin: 0;
 }
 
 `;
