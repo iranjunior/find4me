@@ -9,7 +9,7 @@ export const Container = styled.form`
 `;
 
 export const Input = styled.input`
-    width: 40%;
+    width: 35%;
     height: 46px;
     padding: 0;
     padding-left: 20px;

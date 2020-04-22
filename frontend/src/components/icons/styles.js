@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default styled.div`
+export const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,5 +20,17 @@ export default styled.div`
             height: 1.5em;
             width: 1.5em;
         }
+    }
+`;
+export const Image = styled.img`
+
+@media only screen and (min-width: 1400px) {
+    height: ${(props) => props.height || props.size || '16em'};
+    width: ${(props) => props.width || props.size || '18em'};
+    }
+
+@media only screen and (max-width: 1400px) {
+    height: ${(props) => props.height || props.size || '8em'};
+    width: ${(props) => props.width || props.size || '10em'};
     }
 `;

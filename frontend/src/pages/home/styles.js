@@ -16,9 +16,15 @@ export const Container = styled.div`
     flex-direction: column;
 
 `;
-
-export const Main = styled.div`
-    height: 100%;
+export const Header = styled.header`
+    height: 10%;
+    width: 90%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+`;
+export const Main = styled.main`
+    height: 90%;
     width: 90%;
     background-image: url('${background}');
     background-repeat: no-repeat;
@@ -27,7 +33,7 @@ export const Main = styled.div`
     display: flex;
     flex-direction: column;
     flex: 1;
-    margin: 20em;
+    margin-top: 10em;
 @media only screen and (min-width: 700px) {
     justify-content: flex-start;
 }
