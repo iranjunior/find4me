@@ -1,0 +1,5 @@
+{
+    "Success":{"search":{"username":"rubens"}},
+    "NoBody":{"search":{"username":""}},
+    "Failed":{"search":{}}
+  }

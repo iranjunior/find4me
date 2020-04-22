@@ -1,0 +1,51 @@
+{
+  "name": "desafio-backend-concrete",
+  "descripton": "Desafio proposto pela aquele de integração da concrete",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "lint": "eslint ./src/ --ignore-path .gitignore --ignore-pattern internals/scripts",
+    "start": "cross-env NODE_ENV=production node src/index.js",
+    "test": "cross-env jest NODE_ENV=test index.spec.js --watch",
+    "test:unit": "cross-env jest NODE_ENV=test  Units --watch",
+    "test:integrations": "cross-env jest NODE_ENV=test Integrations --watch",
+    "test:coverage": "cross-env NODE_ENV=test jest Units --collect-coverage",
+    "validate": "cross-env NODE_ENV=test yarn lint && jest index.spec.js"
+  },
+  "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "aws-sdk": "^2.659.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^3.22.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.9",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.2",
+    "multer-s3": "^2.9.0",
+    "node-pre-gyp": "^0.14.0",
+    "sharp": "^0.25.2",
+    "short-uuid": "^3.1.1",
+    "swagger-node-express": "^2.1.3",
+    "swagger-ui-express": "^4.1.4"
+  },
+  "devDependencies": {
+    "coveralls": "^3.0.11",
+    "cross-env": "^7.0.2",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "factory-girl": "^5.0.4",
+    "faker": "^4.1.0",
+    "is-uuid": "^1.0.2",
+    "jest": "^25.4.0",
+    "nodemon": "^2.0.3",
+    "randexp": "^0.5.3",
+    "supertest": "^4.0.2"
+  }
+}
