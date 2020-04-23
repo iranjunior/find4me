@@ -1,5 +1,7 @@
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/jsx-filename-extension */
 import React, { useContext } from 'react';
-import * as types from '../constants/types';
+import types from '../constants/types';
 
 import { set, get, clear } from '../services/storage';
 
@@ -24,7 +26,8 @@ export const Context = React.createContext();
 
 const actionMap = {
   [types.CHANGE_KEYWORD]: (state, payload) => saveState({ ...state, keyword: payload }),
-  /* [types.SET_TOKEN]: (state, { token }) => saveState({ ...state, auth: { ...state.auth, token } }),
+  /* [types.SET_TOKEN]: (state, { token }) => saveState({
+     ...state, auth: { ...state.auth, token } }),
   [types.SET_DECLARATION]: (state, payload) => saveState({ ...state, declaration: payload }),
   [types.SET_HEALTHCHECK]: (state, payload) => saveState({ ...state, health: payload }),
   [types.SET_DONATION]: (state, payload) => ({

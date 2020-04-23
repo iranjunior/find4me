@@ -1,15 +1,22 @@
 import styled, { css } from 'styled-components';
 
-export const Container = styled.form`
+export const Container = styled.div`
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: flex-start;
     margin: 8px;
     width: 100%;
 `;
 
+export const Form = styled.form`
+  display: flex;
+  flex-direction: row;
+  width: 35%;
+`;
+
 export const Input = styled.input`
-    width: 35%;
+    width: 100%;
     height: 46px;
     padding: 0;
     padding-left: 20px;
@@ -42,7 +49,6 @@ export const Input = styled.input`
 `;
 export const Submit = styled.button`
     width: 100px;
-    height: 50px;
     padding: 0;
     border-style: unset;
     border-top-right-radius: 3px;

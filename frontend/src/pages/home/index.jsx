@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
+import { connect } from '../../store';
 
 import Title from '../../components/title';
 import Search from '../../components/search';
@@ -6,9 +9,15 @@ import { Logo } from '../../components/icons';
 
 import texts from '../../constants/texts';
 
+import { handleClick, handleSearch, handleFocus } from '../../services/handles';
+
 import { Container, Main, Header } from './styles';
 
-export default function Home() {
+const Home = ({
+  dispatch, store,
+}) => {
+  const [active, setActive] = useState(!store.keyword.length);
+  const history = useHistory();
   return (
     <Container>
       <Header>
@@ -16,8 +25,22 @@ export default function Home() {
       </Header>
       <Main>
         <Title content={texts.TITTLE} />
-        <Search />
+        <Search
+          handleClick={handleClick(history)}
+          handleFocus={handleFocus(setActive, store.keyword)}
+          handleSearch={handleSearch(dispatch)}
+          active={active}
+          keyword={store.keyword}
+        />
       </Main>
     </Container>
   );
-}
+};
+Home.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  store: PropTypes.shape({
+    keyword: PropTypes.string,
+  }).isRequired,
+};
+
+export default connect(Home);
