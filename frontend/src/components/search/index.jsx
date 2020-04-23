@@ -1,61 +1,59 @@
-import React, { useState } from 'react';
+import React, { createRef, useMemo } from 'react';
 import Proptypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
+
 import { Search } from '../icons';
 import { connect } from '../../store/index';
-import Placeholders from '../placeholders/index';
+import Placeholders from '../placeholders';
+import Dropdown from '../dropdown';
 
-import { CHANGE_KEYWORD } from '../../constants/types';
 
 import {
-  Container, Input, Submit,
+  Container, Input, Submit, Form,
 } from './styles';
 
 const SearchComponent = ({
-  dispatch, store,
+  handleClick, handleFocus, handleSearch, active, keyword, suggestions, handleFinded,
 }) => {
-  const [active, setActive] = useState(!store.keyword.length);
-  const history = useHistory();
-
-  const handleClick = () => {
-    history.push('/person', {
-      keyword: store.keyword,
-    });
-  };
-  const handleSearch = (e) => {
-    dispatch({
-      type: CHANGE_KEYWORD,
-      payload: e.target.value,
-    });
-  };
-  const handleFocus = (focus) => {
-    if (store.keyword.length === 0) {
-      setActive(!focus);
-    }
-  };
+  const activeDropdown = useMemo(() => !!suggestions.length, [suggestions]);
+  const inputRef = createRef();
   return (
-    <Container onSubmit={handleClick}>
-      <Placeholders active={active} />
-      <Input
-        onFocus={() => handleFocus(true)}
-        onBlur={() => handleFocus(false)}
-        defaultValue={store.keyword}
-        type="text"
-        required
-        onChange={handleSearch}
-      />
-      <Submit type="submit" id="button">
-        <Search />
-      </Submit>
+    <Container>
+      <Placeholders inputRef={inputRef} active={active} />
+      <Form onSubmit={() => handleClick(keyword)}>
+        <Input
+          onFocus={() => handleFocus(true)}
+          onBlur={() => handleFocus(false)}
+          defaultValue={keyword}
+          value={keyword}
+          type="text"
+          required
+          ref={inputRef}
+          onChange={(e) => handleSearch(e.target.value)}
+        />
+        <Submit type="submit" id="button">
+          <Search />
+        </Submit>
+        <Dropdown
+          handleFinded={handleFinded}
+          itens={suggestions}
+          active={activeDropdown}
+
+        />
+      </Form>
     </Container>
   );
 };
 
 SearchComponent.propTypes = {
-  dispatch: Proptypes.func.isRequired,
-  store: Proptypes.shape({
-    keyword: Proptypes.string.isRequired,
-  }).isRequired,
+  handleClick: Proptypes.func.isRequired,
+  handleFinded: Proptypes.func.isRequired,
+  handleFocus: Proptypes.func.isRequired,
+  handleSearch: Proptypes.func.isRequired,
+  suggestions: Proptypes.arrayOf(Proptypes.string.isRequired),
+  keyword: Proptypes.string.isRequired,
+  active: Proptypes.bool.isRequired,
 };
-
+SearchComponent.defaultProps = {
+  suggestions: [],
+};
 export default connect(SearchComponent);

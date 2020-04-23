@@ -1,39 +1,43 @@
-import { types } from '../store/types'
+import types from '../constants/types';
+import Api from './API';
 
-export const handleCheckedDeclararion = (store, dispatch) => {
+export const handleClick = (history) => (keyword) => {
+  history.push('/person', {
+    keyword,
+  });
+};
+export const handleFinded = (dispatch) => (payload) => {
   dispatch({
-    type: types.SET_DECLARATION,
-    payload: !store.declaration,
-  })
-}
-export const handleCheckedHealth = (store, dispatch) => {
+    type: types.CHANGE_KEYWORD,
+    payload,
+  });
   dispatch({
-    type: types.SET_HEALTHCHECK,
-    payload: !store.health,
-  })
-}
-export const handleRedirectSymptoms = (url) => {
-  window.open(url, '_blank')
-}
-export const handleBackButton = () => {
-  // console.log(window.location.pathname)
-  const paths = window.location.pathname.split('/')
-  paths.pop()
-  window.location.pathname = paths.join('/')
-}
-export const handleBackCurrentReceivedButton = () => {
-  // console.log(window.location.pathname)
-  const paths = window.location.pathname.split('/')
-  paths.pop()
-  paths.pop()
-  window.location.pathname = paths.join('/')
-}
-export const handleDonationReceived = (url) => {
-  window.location.pathname += `/${url}`
-}
-export const handleDonationReceivedVoucher = (voucher) => {
-  window.location.pathname += `/${voucher}/prof`
-}
-export const handleToggleModal = (setModal) => {
-  setModal((value) => !value)
-}
+    type: types.CHANGE_SUGGESTIONS_KEYWORD,
+    payload: [],
+  });
+};
+export const handleSearch = (dispatch) => async (payload) => {
+  dispatch({
+    type: types.CHANGE_KEYWORD,
+    payload,
+  });
+  if (payload.length > 2) {
+    const { success, data } = await Api.getKeywords(payload);
+    if (success) {
+      dispatch({
+        type: types.CHANGE_SUGGESTIONS_KEYWORD,
+        payload: data.keywords,
+      });
+    }
+  } else {
+    dispatch({
+      type: types.CHANGE_SUGGESTIONS_KEYWORD,
+      payload: [],
+    });
+  }
+};
+export const handleFocus = (setActive, keyword) => (focus) => {
+  if (keyword.length === 0) {
+    setActive(!focus);
+  }
+};

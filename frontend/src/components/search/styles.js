@@ -1,15 +1,24 @@
 import styled, { css } from 'styled-components';
 
-export const Container = styled.form`
+export const Container = styled.div`
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: flex-start;
     margin: 8px;
     width: 100%;
 `;
 
+export const Form = styled.form`
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 35%;
+
+`;
+
 export const Input = styled.input`
-    width: 40%;
+    width: calc(80% - 22px);
     height: 46px;
     padding: 0;
     padding-left: 20px;
@@ -23,6 +32,7 @@ export const Input = styled.input`
     ${(props) => props.validate === false && css`
         border:1px solid red;
     `}
+    border:1px solid transparent;
 
     :hover {
         border:1px solid ${(props) => props.theme.colors.focus};
@@ -41,8 +51,7 @@ export const Input = styled.input`
     }
 `;
 export const Submit = styled.button`
-    width: 100px;
-    height: 50px;
+    width: 20%;
     padding: 0;
     border-style: unset;
     border-top-right-radius: 3px;

@@ -17,7 +17,7 @@ export const Container = styled.div`
     position: absolute;
     z-index: 100;
     height: 30px;
-    margin: 5px 10px;
+    margin: 15px 10px;
     color: gray;
 `;
 export const Texts = styled.li`

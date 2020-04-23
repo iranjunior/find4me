@@ -1,3 +1,15 @@
-import axios from 'axios'
+import axios from 'axios';
+import config from '../../config/vars';
+import getKeywords from './getKeywords';
 
-export const Api = axios.create()
+const Api = axios.create({
+  baseURL: config.FIND4ME.BASEURL,
+  timeout: config.FIND4ME.TIMEOUT,
+});
+
+Object.defineProperty(Api, 'getKeywords', {
+  value: getKeywords,
+  writable: false,
+});
+
+export default Api;

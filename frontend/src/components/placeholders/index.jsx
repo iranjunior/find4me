@@ -5,7 +5,7 @@ import placeholders from './placeholders';
 import { Container, WrapperTexts, Texts } from './styles';
 
 
-const Placeholders = ({ active }) => {
+const Placeholders = ({ active, inputRef }) => {
   let myIndex = 0;
 
   const carousel = () => {
@@ -25,9 +25,11 @@ const Placeholders = ({ active }) => {
   useEffect(() => {
     carousel();
   }, []);
-
+  const handleFocus = () => {
+    inputRef.current.focus();
+  };
   return (
-    <Container active={active}>
+    <Container onClick={handleFocus} active={active}>
       {'Pesquisar por: '}
       <WrapperTexts>
         {placeholders.map((placeholder) => <Texts className="texts" key={placeholder}>{placeholder}</Texts>)}
@@ -38,6 +40,11 @@ const Placeholders = ({ active }) => {
 
 Placeholders.propTypes = {
   active: PropTypes.bool.isRequired,
+  inputRef: PropTypes.shape({
+    current: PropTypes.shape({
+      focus: PropTypes.func.isRequired,
+    }).isRequired,
+  }).isRequired,
 };
 
 export default Placeholders;
