@@ -28,6 +28,7 @@ const Placeholders = ({ active, inputRef }) => {
   const handleFocus = () => {
     inputRef.current.focus();
   };
+
   return (
     <Container onClick={handleFocus} active={active}>
       {'Pesquisar por: '}

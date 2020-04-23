@@ -1,5 +1,6 @@
 import types from '../constants/types';
 import Api from './API';
+import { getToken, setToken } from './storage';
 
 export const handleClick = (history) => (keyword) => {
   history.push('/person', {
@@ -35,6 +36,36 @@ export const handleSearch = (dispatch) => async (payload) => {
       payload: [],
     });
   }
+};
+export const handleAuthentication = (token = '') => {
+  if (token.trim()) {
+    setToken(token);
+    return true;
+  }
+  const prevToken = getToken();
+  if (prevToken.trim()) {
+    return true;
+  }
+  return false;
+};
+export const handlePersons = async (keyword) => {
+  const response = await Api.getUserForKeywords(keyword);
+  if (response.success) {
+    return {
+      data: response.data,
+      err: null,
+    };
+  }
+  if (response.status === 401) {
+    return {
+      err: 401,
+      data: null,
+    };
+  }
+  return {
+    err: response.status,
+    data: null,
+  };
 };
 export const handleFocus = (setActive, keyword) => (focus) => {
   if (keyword.length === 0) {

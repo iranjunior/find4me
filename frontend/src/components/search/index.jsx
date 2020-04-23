@@ -15,7 +15,9 @@ const SearchComponent = ({
   handleClick, handleFocus, handleSearch, active, keyword, suggestions, handleFinded,
 }) => {
   const activeDropdown = useMemo(() => !!suggestions.length, [suggestions]);
+
   const inputRef = createRef();
+
   return (
     <Container>
       <Placeholders inputRef={inputRef} active={active} />
@@ -37,7 +39,6 @@ const SearchComponent = ({
           handleFinded={handleFinded}
           itens={suggestions}
           active={activeDropdown}
-
         />
       </Form>
     </Container>

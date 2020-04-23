@@ -1,6 +1,6 @@
-import React from 'react';
-import { MdSearch } from 'react-icons/md';
-import LogoIcon from '../../assets/logo.svg';
+import React, { memo } from 'react';
+import { MdSearch, MdClose } from 'react-icons/md';
+import LogoSvg from '../../assets/logo.svg';
 
 import { Container, Image } from './styles';
 
@@ -11,5 +11,10 @@ const decoratorIcons = (Component, props) => (
 );
 const decoratorSvg = (Component, props) => (<Image {...props} src={Component} />);
 
-export const Search = (...props) => decoratorIcons(MdSearch, props);
-export const Logo = (...props) => decoratorSvg(LogoIcon, props);
+const SearchIcon = (...props) => decoratorIcons(MdSearch, props);
+const CloseIcon = (...props) => decoratorIcons(MdClose, ...props);
+const LogoIcon = (...props) => decoratorSvg(LogoSvg, props);
+
+export const Search = memo(SearchIcon);
+export const Close = memo(CloseIcon);
+export const Logo = memo(LogoIcon);

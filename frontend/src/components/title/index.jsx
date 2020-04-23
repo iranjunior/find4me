@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { memo } from 'react';
 import Proptypes from 'prop-types';
 
 import { Title } from './styles';
 
-export default function TitleComponent({ content }) {
-  return (
-    <Title>
-      {content}
-    </Title>
-  );
-}
+const TitleComponent = ({ content }) => (
+  <Title>
+    {content}
+  </Title>
+);
 TitleComponent.propTypes = {
   content: Proptypes.string.isRequired,
 };
+
+export default memo(TitleComponent);
