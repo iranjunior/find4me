@@ -11,12 +11,14 @@ export const Container = styled.div`
 
 export const Form = styled.form`
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   width: 35%;
+
 `;
 
 export const Input = styled.input`
-    width: 100%;
+    width: calc(80% - 22px);
     height: 46px;
     padding: 0;
     padding-left: 20px;
@@ -30,6 +32,7 @@ export const Input = styled.input`
     ${(props) => props.validate === false && css`
         border:1px solid red;
     `}
+    border:1px solid transparent;
 
     :hover {
         border:1px solid ${(props) => props.theme.colors.focus};
@@ -48,7 +51,7 @@ export const Input = styled.input`
     }
 `;
 export const Submit = styled.button`
-    width: 100px;
+    width: 20%;
     padding: 0;
     border-style: unset;
     border-top-right-radius: 3px;

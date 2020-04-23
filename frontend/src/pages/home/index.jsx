@@ -9,7 +9,9 @@ import { Logo } from '../../components/icons';
 
 import texts from '../../constants/texts';
 
-import { handleClick, handleSearch, handleFocus } from '../../services/handles';
+import {
+  handleClick, handleSearch, handleFocus, handleFinded,
+} from '../../services/handles';
 
 import { Container, Main, Header } from './styles';
 
@@ -31,6 +33,8 @@ const Home = ({
           handleSearch={handleSearch(dispatch)}
           active={active}
           keyword={store.keyword}
+          suggestions={store.suggestionsKeywords}
+          handleFinded={handleFinded(dispatch)}
         />
       </Main>
     </Container>
@@ -40,6 +44,7 @@ Home.propTypes = {
   dispatch: PropTypes.func.isRequired,
   store: PropTypes.shape({
     keyword: PropTypes.string,
+    suggestionsKeywords: PropTypes.array,
   }).isRequired,
 };
 
