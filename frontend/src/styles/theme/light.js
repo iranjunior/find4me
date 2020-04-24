@@ -15,10 +15,20 @@ export default {
     },
   },
   sizes: {
+    button: {
+      height: '3.2em',
+      width: {
+        medium: '19em',
+      },
+    },
+    input: {
+      height: '4em',
+      width: '18em',
+    },
     font: {
       extraLarge: '30px',
-      large: '18px',
-      normal: '16px',
+      large: '2em',
+      normal: '1em',
     },
   },
 };

@@ -11,6 +11,7 @@
 # production
 /build
 
+/Juno/
 # misc
 .DS_Store
 .env.local

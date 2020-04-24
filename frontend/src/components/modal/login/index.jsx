@@ -1,28 +1,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Close } from '../../icons';
+import Button from '../../button/index';
+import EmailInput from '../../inputs/email';
+import PasswordInput from '../../inputs/passwords';
 
 import texts from '../../../constants/texts';
 
 import {
-  Container, Header, Button, Title, Main,
+  Container, Header, ButtonBack, Title, Main, Form, WrapperLinks,
 } from './styles';
+import Link from '../../links';
 
 const LoginModal = ({
   closeModal,
 }) => (
   <Container>
     <Header>
-      <Button
+      <ButtonBack
         onClick={closeModal}
       >
         <Close color="black" />
-      </Button>
+      </ButtonBack>
       <Title>
         {texts.LOGIN_TITLE}
       </Title>
     </Header>
-    <Main />
+    <Main>
+      <Form>
+        <EmailInput />
+        <PasswordInput />
+        <Button message="Logar" />
+        <WrapperLinks>
+          <Link link="#" content={texts.LOGIN_FORGET} />
+          <Link link="#" content={texts.LOGIN_REGISTER} />
+        </WrapperLinks>
+      </Form>
+    </Main>
   </Container>
 );
 

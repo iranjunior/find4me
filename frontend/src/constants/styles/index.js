@@ -6,11 +6,14 @@ module.exports = {
     black: '#000',
     blue: 'cornflowerblue',
   },
-  fontSize: {
-    large: '60px',
-    mediumLarge: '40px',
-    medium: '35px',
-    small: '20px',
+  size: {
+    fontSize: {
+      large: '60px',
+      mediumLarge: '40px',
+      medium: '35px',
+      small: '20px',
+    },
+    input: '4em',
   },
 
 };

@@ -13,7 +13,7 @@ export const Types = {
 const ModalComponent = ({
   isOpen, closeModal, content,
 }) => {
-  const renderContent = (closeModal) => {
+  const renderContent = () => {
     const render = {
       LOGIN: Login,
     };
@@ -26,7 +26,7 @@ const ModalComponent = ({
       style={styles}
       contentLabel={content}
     >
-      {renderContent(closeModal)}
+      {renderContent()}
     </Modal>
   );
 };
