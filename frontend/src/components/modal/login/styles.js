@@ -28,6 +28,12 @@ export const Title = styled.h3`
     margin: 0;
     margin-top: 1em;
 `;
+export const Feedbacks = styled.div`
+    height: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+`;
 export const ButtonBack = styled.button`
     height: 2em;
     width: 2em;

@@ -7,7 +7,7 @@ import Title from '../../components/title';
 import Search from '../../components/search';
 import { Logo } from '../../components/icons';
 
-import texts from '../../constants/texts';
+import { TITTLE } from '../../constants/texts';
 
 import {
   handleClick, handleSearch, handleFocus, handleFinded,
@@ -26,7 +26,7 @@ const Home = ({
         <Logo />
       </Header>
       <Main>
-        <Title content={texts.TITTLE} />
+        <Title content={TITTLE} />
         <Search
           handleClick={handleClick(history)}
           handleFocus={handleFocus(setActive, store.keyword)}

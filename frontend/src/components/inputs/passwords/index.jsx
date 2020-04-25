@@ -1,17 +1,33 @@
-import React, { useState } from 'react';
+import React from 'react';
+import Proptypes from 'prop-types';
 
 import BaseInput from '../baseInput';
 
-const PasswordInput = () => {
-  const [value, setValue] = useState('');
-  return (
-    <BaseInput
-      value={value}
-      setValue={setValue}
-      type="password"
-      label="Senha"
-    />
-  );
+const PasswordInput = ({
+  value, setValue, defaultValue,
+}) => (
+  <BaseInput
+    value={value}
+    setValue={setValue}
+    defaultValue={defaultValue || value}
+    type="password"
+    label="Senha"
+    minLength={8}
+    required
+  />
+);
+
+PasswordInput.propTypes = {
+  value: Proptypes.string,
+  setValue: Proptypes.func,
+  defaultValue: Proptypes.string,
+};
+
+PasswordInput.defaultProps = {
+  value: '',
+  isInvalid: false,
+  setValue: (e) => console.log(e),
+  defaultValue: '',
 };
 
 export default PasswordInput;

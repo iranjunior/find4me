@@ -14,7 +14,7 @@ export const ButtonTypes = {
 };
 
 function ButtonComponent({
-  type, size, message, disable, handleClick, children,
+  type, size, message, disabled, handleClick, children,
 }) {
   return (
     <Container
@@ -24,7 +24,7 @@ function ButtonComponent({
         type="submit"
         tabIndex={0}
         aria-label={message}
-        disabled={disable}
+        disabledd={disabled}
         onClick={handleClick}
         typeButton={type}
       >
@@ -38,7 +38,7 @@ ButtonComponent.propTypes = {
   children: PropTypes.element,
   type: PropTypes.string,
   message: PropTypes.string,
-  disable: PropTypes.bool,
+  disabled: PropTypes.bool,
   handleClick: PropTypes.func,
   size: PropTypes.string,
 };
@@ -47,7 +47,7 @@ ButtonComponent.defaultProps = {
   type: ButtonTypes.FILL,
   size: ButtonTypes.MEDIUM,
   message: '',
-  disable: false,
+  disabled: false,
   handleClick: () => {},
   children: null,
 };

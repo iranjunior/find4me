@@ -4,7 +4,7 @@ import Modal from '../../components/modal';
 import { Logo } from '../../components/icons';
 
 import { Container, Header, Main } from './styles';
-import texts from '../../constants/texts';
+import { SEARCHING } from '../../constants/texts';
 import { connect } from '../../store';
 import { handlePersons, handleAuthentication } from '../../services/handles';
 
@@ -29,7 +29,7 @@ function Result({ store, dispatch }) {
         <Logo />
       </Header>
       <Main>
-        <Title content={texts.SEARCHING} />
+        <Title content={SEARCHING} />
       </Main>
     </Container>
   );

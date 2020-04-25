@@ -19,6 +19,9 @@ const animationInputExplain = keyframes`
   100% {
     border: 2px solid #6c63ff;
     outline: none;
+    :invalid {
+      border-color: red;
+    }
   }
 `;
 
@@ -61,7 +64,10 @@ export const Input = styled.input.attrs((props) => ({
   border-radius: .5em;
   padding-left: 1em;
   outline: 0;
-
+  ${(props) => (props.isInvalid ? css`
+    color: red;
+    font-weight: 700;
+  ` : '')}
   ${(props) => props.explain && css`
     animation: ${animationInputExplain} .3s ease-in-out;
     animation-fill-mode: forwards;

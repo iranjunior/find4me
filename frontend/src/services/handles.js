@@ -1,6 +1,9 @@
 import types from '../constants/types';
 import Api from './API';
-import { getToken, setToken } from './storage';
+import {
+  getToken, setToken, setUser, getUser, clearUser, clearToken,
+} from './storage';
+import { isEmail, isPassword } from './utils/checkValues';
 
 export const handleClick = (history) => (keyword) => {
   history.push('/person', {
@@ -17,6 +20,40 @@ export const handleFinded = (dispatch) => (payload) => {
     payload: [],
   });
 };
+export const handleCheckFieldsLogin = (setInvalid) => (e) => {
+  e.preventDefault();
+  const [{ value: email }] = e.target;
+  if (!isEmail(email)) {
+    setInvalid((prev) => ({
+      ...prev,
+      email: true,
+    }));
+    e.stopPropagation();
+  } else {
+    setInvalid((prev) => ({
+      ...prev,
+      email: false,
+    }));
+  }
+};
+export const handleLogin = (setErrorLogin, closeModal = () => {}) => async (e) => {
+  e.preventDefault();
+  const [{ value: email }, { value: password }] = e.target;
+  const { success, data: { token, ...user } } = await Api.signIn({
+    email,
+    password,
+  });
+  if (success) {
+    clearUser();
+    clearToken();
+    setUser(user);
+    setToken(token);
+    closeModal();
+  } else {
+    setErrorLogin(true);
+  }
+};
+
 export const handleSearch = (dispatch) => async (payload) => {
   dispatch({
     type: types.CHANGE_KEYWORD,

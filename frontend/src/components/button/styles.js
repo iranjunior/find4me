@@ -10,8 +10,16 @@ export const Button = styled.button`
     width: 100%;
     font-weight: 700;
     font-size: 22px;
-    border-radius: .5em;  
+    border-radius: .5em;
+    box-shadow: 0px 0px 5px 0px ${(props) => props.theme.colors.background.primary};
     
+    :hover {
+        cursor: pointer;
+    }
+    :active {
+        box-shadow: inset 0px 0px 5px 0px gray;
+        transform: scale(0.95);
+    }
     ${(props) => props.typeButton === 'fill' && css`
       background: ${props.theme.colors.background.primary};
       color: #fff;
