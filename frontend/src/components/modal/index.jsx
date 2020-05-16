@@ -3,21 +3,24 @@ import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 
 import Login from './login';
+import User from './user';
 
 import styles from './styles';
 
-export const Types = {
+export const TypesModal = {
   LOGIN: 'LOGIN',
+  USER: 'USER',
 };
 
 const ModalComponent = ({
-  isOpen, closeModal, content,
+  isOpen, closeModal, content, data,
 }) => {
   const renderContent = () => {
     const render = {
       LOGIN: Login,
+      USER: User,
     };
-    return React.createElement(render[content], { closeModal }) || null;
+    return React.createElement(render[content], { closeModal, data }) || null;
   };
   return (
     <Modal
@@ -35,10 +38,12 @@ ModalComponent.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
   content: PropTypes.string,
+  data: PropTypes.any,
 };
 
 ModalComponent.defaultProps = {
-  content: Types.LOGIN,
+  content: TypesModal.LOGIN,
+  data: {},
 };
 
 export default memo(ModalComponent);

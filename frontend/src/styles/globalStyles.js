@@ -23,8 +23,23 @@ export default createGlobalStyle`
       display: flex;
       justify-content: center;
     }
-    /* width */
     ::-webkit-scrollbar {
-      width: 0px;
+      width: 5px;
+      height: 2px;
+    }
+    .card__svg {
+      position: absolute;
+      left: 0;
+      top: 115px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F5F0F0;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: ${(props) => props.theme.colors.background.primary};
+      border-radius: 1px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: ${(props) => `${props.theme.colors.background.primary}AA`};
     }
 `;

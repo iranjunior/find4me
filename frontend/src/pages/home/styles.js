@@ -46,3 +46,12 @@ export const Main = styled.main`
 }
 
 `;
+export const Content = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    @media only screen and (max-width: 700px) {
+        width: 90%;
+        align-items: center;    
+    }
+`;

@@ -3,17 +3,18 @@ import styled, { css } from 'styled-components';
 export const Container = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
+    align-items: center;
+    justify-content: center;
     margin: 8px;
     width: 100%;
 `;
 
 export const Form = styled.form`
   display: flex;
-  flex-wrap: wrap;
   flex-direction: row;
-  width: 35%;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 1em;
 
 `;
 
@@ -44,10 +45,15 @@ export const Input = styled.input`
         height: 35px;
         font-size: 15px
     } 
+    @media only screen and (max-width: 1024px){
+        height: 30px;
+        font-size: 14px;
+        width: 80%;  
+    }
     @media only screen and (max-width: 700px){
         height: 30px;
         font-size: 10px;
-        width: 100%;  
+        width: 70%;  
     }
 `;
 export const Submit = styled.button`
@@ -70,7 +76,7 @@ export const Submit = styled.button`
     } 
     @media only screen and (max-width: 700px){
         height: 30px;
-        width: 60px;
+        width: 50px;
     } 
 `;
 export const Logo = styled.img`

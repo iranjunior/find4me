@@ -85,27 +85,48 @@ export const handleAuthentication = (token = '') => {
   }
   return false;
 };
-export const handlePersons = async (keyword) => {
-  const response = await Api.getUserForKeywords(keyword);
-  if (response.success) {
-    return {
-      data: response.data,
-      err: null,
-    };
-  }
-  if (response.status === 401) {
-    return {
-      err: 401,
-      data: null,
-    };
-  }
-  return {
-    err: response.status,
-    data: null,
-  };
-};
+
+export const handlePersons = (keyword) => new Promise((resolve, reject) => {
+  Api.getUserForKeywords(keyword).then((res) => {
+    if (res.success) {
+      resolve({ status: res.status, data: res.data });
+    } else {
+      reject(new Error(JSON.stringify({ status: res.status, error: res.error })));
+    }
+  });
+});
 export const handleFocus = (setActive, keyword) => (focus) => {
   if (keyword.length === 0) {
     setActive(!focus);
   }
+};
+
+export const handleUserModal = (setIsOpen, setContentModal, setUserModal, content, user) => () => {
+  setContentModal(content);
+  setUserModal(user);
+  setIsOpen(true);
+};
+export const handleResults = (setOpen, setSearching, dispatch, keyword) => {
+  const isAuthenticated = handleAuthentication();
+  if (!isAuthenticated) {
+    setOpen(true);
+  }
+  setSearching(true);
+  handlePersons(keyword).then(({ data }) => {
+    dispatch({
+      type: types.CHANGE_SEARCH_RESULTS,
+      payload: data,
+    });
+    setSearching(false);
+  }).catch((err) => {
+    if (err.status === 401) {
+      setOpen(true);
+    }
+    console.error('Erro get users: ', err.error);
+    dispatch({
+      type: types.CHANGE_SEARCH_RESULTS,
+      payload: [],
+    });
+    setSearching(false);
+  });
 };

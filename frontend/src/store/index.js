@@ -10,6 +10,7 @@ const dataStorage = get();
 const cleanState = {
   keyword: '',
   suggestionsKeywords: [],
+  usersFinded: [],
 };
 
 function saveState(newState) {
@@ -29,6 +30,7 @@ export const Context = React.createContext();
 const actionMap = {
   [types.CHANGE_KEYWORD]: (state, payload) => saveState({ ...state, keyword: payload }),
   [types.CHANGE_SUGGESTIONS_KEYWORD]: (state, payload) => saveState({ ...state, suggestionsKeywords: payload }),
+  [types.CHANGE_SEARCH_RESULTS]: (state, payload) => saveState({ ...state, usersFinded: payload }),
   /* [types.SET_TOKEN]: (state, { token }) => saveState({
      ...state, auth: { ...state.auth, token } }),
   [types.SET_DECLARATION]: (state, payload) => saveState({ ...state, declaration: payload }),
